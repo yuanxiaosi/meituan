@@ -12,14 +12,7 @@ module.exports = function (option) {
     return {
         context: APP_PATH,
         entry: {
-            app: './webpack/app/main.jsx',
-            popdart: './webpack/popdart/main.jsx',
-            start: './webpack/start/main.jsx',
-            exchange: './webpack/exchange/main.jsx',
-            report: './webpack/report/main.jsx',
-            manage: './webpack/manage/main.jsx',
-            vipcharge: './webpack/vipcharge/main.jsx',
-            asdmcharge: './webpack/asdmcharge/main.jsx'
+            app: './webpack/app/main.js'
         },
         output: {
             filename: filename,
@@ -32,8 +25,7 @@ module.exports = function (option) {
                 exclude: /node_modules/,
                 loader: 'babel', // 'babel-loader' is also a legal name to reference
                 query: {
-                    presets: ['es2015', 'react', 'stage-0'],
-                    plugins: ['antd']
+                    presets: ['es2015', 'react', 'stage-0']
                 }
             }, {
                 test: /\.css$/,
@@ -56,7 +48,7 @@ module.exports = function (option) {
                 process.stderr.write(percent + '% ' + message);
             }),
             new HtmlPlugin({
-                index: "index"
+                app: "app"
             })
         ]
     };
