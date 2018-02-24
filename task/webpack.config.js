@@ -34,7 +34,7 @@ module.exports = function (option) {
                 test: /\.less$/,
                 loader: "style!css!less?relativeUrls"
             }, {
-                test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|svg)$/,
+                test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|svg|webp)$/,
                 loader: "file?name=asset/[hash].[ext]"
             }]
         },
