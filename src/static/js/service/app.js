@@ -1,4 +1,5 @@
 import api from "../library/axios/api";
+import './mock.js'
 
 // 根据你的接口封装以下服务
 let App = {

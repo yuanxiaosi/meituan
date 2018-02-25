@@ -14,15 +14,19 @@ class App extends React.Component{
 		}
 	}
 	componentWillMount() {
-		this.props.storeActions.getStore()
+		
+		this.props.storeActions.fetchStore({"test":123})
 	}
 	componentDidMount() {
-
-		console.log(this)
+		
+		
 
 	}
   render() {
-  	var me = this;
+  	let self = this;
+  	let store =self.props.store
+  	console.log(store)
+
 		return (
 		  <div className="home">
 				<div className="banner">

@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.18.0",
     "babel": "^6.23.0",
     "babel-core": "^6.26.0",
     "babel-loader": "6.2.3",
@@ -35,11 +36,13 @@
     "less": "^3.0.1",
     "less-loader": "^4.0.5",
     "lib-flexible": "^0.3.2",
+    "nprogress": "^0.2.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.7",
     "react-router": "3.2.0",
     "redux": "^3.7.2",
+    "redux-thunk": "^2.2.0",
     "run-sequence": "^2.2.1",
     "style-loader": "^0.20.2",
     "vinyl-paths": "^2.1.0"
