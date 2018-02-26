@@ -8,6 +8,8 @@ import * as StoreActions from '../../actions/StoreAction.js'
 
 import Navigation from '../navigation/main.jsx'
 
+import {alert} from './alert.js'
+
 
 class App extends React.Component{
 	constructor(props){
@@ -17,13 +19,7 @@ class App extends React.Component{
 		}
 	}
 	componentWillMount() {
-		this.props.storeActions.fetchStoreStart()
-		let fetchStore = this.props.storeActions.fetchStore()
-		fetchStore.then((res)=>{
-			if(res.status != 0){
-				alert(123)
-			}
-		})
+		this.fetchStore()
 	}
 	componentDidMount() {
 		window.onscroll = this.scroll.bind(this)
@@ -31,6 +27,19 @@ class App extends React.Component{
 	
 	componentWillUnmount() {
 		window.onscroll = '';
+	}
+	fetchStore() {
+		this.props.storeActions.fetchStoreStart()
+		let fetchStore = this.props.storeActions.fetchStore()
+		fetchStore.then((res)=>{
+			console.log(res)
+			if(res.status != 0){
+				console.log(111)
+				alert({
+					msg: res.msg
+				})
+			}
+		})
 	}
 	scroll(e){
 		let store = this.props.store;
@@ -52,8 +61,7 @@ class App extends React.Component{
 		
 		
 		if(scrollTop + clientHeight >= bodyHeight){
-			this.props.storeActions.fetchStoreStart()
-			this.props.storeActions.fetchStore()
+			this.fetchStore()
 		}
 	}
   render() {
