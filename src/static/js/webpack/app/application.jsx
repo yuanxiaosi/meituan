@@ -7,9 +7,14 @@ import 'lib-flexible';
 
 
 class Application extends React.Component{
+  constructor(props){
+    super(props)
+    this.state = {
+    }
+  }
   render() {
     let { location, children } = this.props;
-
+    
     let fadeDiv = ( //添加集体动画效果
       <div key={+new Date()} className="animated fadeIn">
         {children}

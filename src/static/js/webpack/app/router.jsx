@@ -5,6 +5,12 @@ import Application from './application.jsx';
 var routerList = [{
     path: "/detail", 
     filePath: "/detail/main.jsx"
+  },{
+    path: "/order", 
+    filePath: "/order/main.jsx"
+  },{
+    path: "/personal", 
+    filePath: "/personal/main.jsx"
   }
 ] 
 
@@ -22,7 +28,7 @@ var routeLabel = routerList.map((v, k)=>{
 let router = (
   <Router history={hashHistory}>
     <Route path="/" component={ Application }>
-      <IndexRoute className={"animated fadeIn"} getComponent={(location, callback) => {
+      <IndexRoute getComponent={(location, callback) => {
         require.ensure([], (require) => {
           callback(null, require('./view/home/main.jsx').default);
         });

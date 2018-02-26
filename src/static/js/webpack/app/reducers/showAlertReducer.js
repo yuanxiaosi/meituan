@@ -2,7 +2,7 @@ import * as types from '../constants/index.js'
 
 const showAlert = {
   status: false,
-  msg: "hello"
+  msg: "欢迎使用美团外卖哦，亲！"
 }
 
 

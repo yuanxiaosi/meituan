@@ -1,18 +1,21 @@
 import * as types from '../constants/index.js'
 
-const store = []
+const store = {
+  status: 0,
+  msg: "success",
+  isLoading: false,
+  data: []
+}
 
 
 export default function StoreReducer(state = store, action) {
   switch (action.type) {
-    case types.FETCH_STORE_SUCCESS:
-      state = action.store
+    case types.FETCH_STORE_END:
+      state = action.result;
+      state.isLoading = false;
       return state
-      break
-    case types.FETCH_STORE_FAIL:
-      return state
-      break
-    case types.GET_STORE:
+    case types.FETCH_STORE_START:
+      state.isLoading = true;
       return state
     default:
       return state
