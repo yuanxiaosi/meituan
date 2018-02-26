@@ -19,6 +19,13 @@ class App extends React.Component{
 	componentDidMount() {
 
 	}
+	close() {
+		let showAlert = {
+			status: false,
+			msg: ''
+		}
+		this.props.showAlertActions.changeShowAlertStatus(showAlert)
+	}
   render() {
   	let self = this;
   	let showAlert = self.props.showAlert
@@ -26,8 +33,11 @@ class App extends React.Component{
     let msg = showAlert.msg
 		return (
 		  <div className={status?"alert":"alert hide"}>
-				<div className="msg">{msg}</div>
-				<div className="btn">确定</div>
+		  	<div className="mask"></div>
+		  	<div className="body">
+		  		<div className="msg">{msg}</div>
+					<div className="btn" onClick={self.close.bind(self)}>确定</div>
+		  	</div>
 			</div>
 		);
   }

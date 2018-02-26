@@ -1,5 +1,7 @@
 .home{
 	background: #F4F4F4;
+	padding-bottom: 50px;
+	height: 2000px;
 	.banner{
 		width: 100%;
 		img{
@@ -78,15 +80,55 @@
 					width: 2.24rem;
     			height: 1.68rem;
     			padding-left: 0.26rem;
+    			margin-right: 0.26rem;
     			float: left;
     			img{
     				display: block;
     				width: 100%;
     				height: 100%;
+
     			}
 				}
 				.rg{
-					float: left;
+					padding-right: 0.26rem;
+					.name{
+						font-size: 0.40625rem;
+						text-align: left;
+					}
+					.msg{
+						padding-top: 0.25rem;
+						padding-bottom: 0.25rem;
+						overflow: hidden;
+						.star{
+							float: left;
+							padding-right: 0.15625rem;
+							.star_score{
+								padding-right: 0.09375rem;
+								display: inline-block;
+								width: 10px;
+								height: 10px;
+								background: url('../../../../../img/app/newstars.png') no-repeat 0 0;
+								background-size: auto 100%;
+							}
+							.star_score_half{
+								padding-right: 0.09375rem;
+								display: inline-block;
+								width: 10px;
+								height: 10px;
+								background: url('../../../../../img/app/newstars.png') no-repeat -13px 0;
+								background-size: auto 100%;
+							}
+						}
+						.count{
+							float: left;
+						}
+						.distant{
+							float: right;
+						}
+					}
+					.price{
+						text-align: left;
+					}
 				}
 			}
 		}
