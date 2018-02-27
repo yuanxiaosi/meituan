@@ -8,14 +8,15 @@ import * as StoreActions from '../../actions/StoreAction.js'
 
 import Navigation from '../navigation/main.jsx'
 
-import {alert} from './alert.js'
-
-
 class App extends React.Component{
 	constructor(props){
 		super(props);
 		this.state = {
-			lastScrollTop: 0
+			lastScrollTop: 0,
+			isLoading: false,
+			page: 0,
+			pageSize: 5,
+			isOver: false,
 		}
 	}
 	componentWillMount() {
@@ -29,15 +30,24 @@ class App extends React.Component{
 		window.onscroll = '';
 	}
 	fetchStore() {
-		this.props.storeActions.fetchStoreStart()
-		let fetchStore = this.props.storeActions.fetchStore()
+		let self = this;
+		var params = {
+			page: this.state.page+1,
+			pageSize: this.state.pageSize,
+		}
+		this.setState({page: this.state.page+1})
+
+		let fetchStore = this.props.storeActions.fetchStore(params)
 		fetchStore.then((res)=>{
-			console.log(res)
+			self.setState({isLoading: false})
 			if(res.status != 0){
-				console.log(111)
 				alert({
 					msg: res.msg
 				})
+			}else{
+				if(res.data.length == 0){
+					self.setState({isOver: true})
+				}
 			}
 		})
 	}
@@ -47,27 +57,27 @@ class App extends React.Component{
 		let clientHeight = document.documentElement.clientHeight
 		let scrollTop = document.documentElement.scrollTop
 
-		
-		if(this.state.lastScrollTop > scrollTop){
+		if(this.state.isOver){
 			return
 		}
-		this.setState({
-			lastScrollTop: scrollTop
-		})
 
-		if(store.isLoading){
+		this.setState({lastScrollTop: scrollTop})
+
+		if(this.state.isLoading){
 			return
 		}
 		
-		
-		if(scrollTop + clientHeight >= bodyHeight){
-			this.fetchStore()
+		if(scrollTop + clientHeight >= bodyHeight - 30){
+			this.setState({isLoading: true}, ()=>{
+				this.fetchStore()
+			})
+			
 		}
 	}
   render() {
   	let self = this;
   	let store =self.props.store
-  	let storeDiv = store.data.map((v, k)=>{
+  	let storeDiv = store.map((v, k)=>{
   		let starScoreNum = parseInt(v.wm_poi_score/1)
   		let starScoreHalfNum = v.wm_poi_score%1==0.5?1:0;
   		let starDiv = [];
@@ -161,7 +171,7 @@ class App extends React.Component{
 
 
 App.propTypes = {
-  store: PropTypes.object.isRequired,
+  store: PropTypes.array.isRequired,
   storeActions: PropTypes.object.isRequired
 }
 

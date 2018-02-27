@@ -6,6 +6,7 @@ let App = {
 
   getStoreList: (data) => {
     return api.get('/api/store', {params: data});
+    //return api.post("/api/store", data)
   },
   putChargeOrderRemarks: (id, data) => {
     return api.put(`/api/chargeOrder/${id}`, data);

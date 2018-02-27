@@ -5,7 +5,9 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 
 import MyRouter from './router.jsx'
-import Alert from './view/alert/main.jsx'
+import alertLess from './view/alert/main.less'
+/*import {alert} from './view/alert/main.jsx'
+window.alert = alert*/
 
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk';
@@ -17,7 +19,6 @@ const store = createStore(reducer, applyMiddleware(thunk))
 ReactDOM.render(
   <Provider store={store}>
     <div>
-      <Alert />
       {MyRouter}
     </div>
   </Provider>,

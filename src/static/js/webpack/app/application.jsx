@@ -6,20 +6,42 @@ import '../../../css/animate/animate.css';
 import 'lib-flexible';
 
 
-class Application extends React.Component{
+class Application extends React.Component{ //router-transtion & animate
   constructor(props){
     super(props)
     this.state = {
+      calss: "animated fadeIn",
+      children: this.props.children,
+      oldChildren: null,
+      loading: false,
+      timer: null,
     }
+  }
+  componentWillReceiveProps(){
+    let self = this;
+    this.state.oldChildren = this.props.children;
+    this.state.loading = true;
+    self.state.timer = setTimeout(()=>{
+      console.log(self)
+      self.setState({loading: false})
+    }, 300)
   }
   render() {
     let { location, children } = this.props;
-    
-    let fadeDiv = ( //添加集体动画效果
-      <div key={+new Date()} className="animated fadeIn">
-        {children}
-      </div>
-    )
+    let fadeDiv
+    if(this.state.loading){
+      fadeDiv = (
+        <div className="animated fadeOut">
+          {this.state.oldChildren}
+        </div>
+      )
+    }else{
+      fadeDiv = (
+        <div className="animated fadeIn">
+          {children}
+        </div>
+      )
+    }
 
     return (
       <div className="app-main">

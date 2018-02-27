@@ -1,63 +1,65 @@
-import './main.less';
 import React from 'react';
-import PropTypes from 'prop-types'
-import { bindActionCreators } from 'redux'
-import { connect } from 'react-redux'
-import * as showAlertActions from '../../actions/showAlertAction.js'
+import ReactDOM from 'react-dom'
 
 
 class App extends React.Component{
-	constructor(props) {
-	  super(props);
-	  this.state = {
-	    
-	  };
-	}
-	componentWillMount() {
-		
-	}
-	componentDidMount() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      status: true,
+      msg: this.props.msg||"null",
+      containerDestroy: this.props.destroy||function(){}
+    };
+  }
+  componentWillMount() {
+    
+  }
+  componentDidMount() {
 
-	}
-	close() {
-		let showAlert = {
-			status: false,
-			msg: ''
-		}
-		this.props.showAlertActions.changeShowAlertStatus(showAlert)
-	}
+  }
+  close() {
+    this.props.destroy()
+  }
   render() {
-  	let self = this;
-  	let showAlert = self.props.showAlert
-    let status = showAlert.status
-    let msg = showAlert.msg
-		return (
-		  <div className={status?"alert":"alert hide"}>
-		  	<div className="mask"></div>
-		  	<div className="body">
-		  		<div className="msg">{msg}</div>
-					<div className="btn" onClick={self.close.bind(self)}>确定</div>
-		  	</div>
-			</div>
-		);
+    let self = this;
+    let status = this.state.status
+    let msg = this.state.msg
+    return (
+      <div className="alert">
+        <div className="mask"></div>
+        <div className="body">
+          <div className="msg">{msg}</div>
+          <div className="btn" onClick={self.close.bind(self)}>确定</div>
+        </div>
+      </div>
+    );
   }
 };
 
-
-App.propTypes = {
-  showAlert: PropTypes.object.isRequired,
-  showAlertActions: PropTypes.object.isRequired
+class Container{
+  constructor(){
+    this.element = document.createElement('div')
+    document.body.appendChild(this.element)
+  }
+  destroy(){
+    if (ReactDOM.unmountComponentAtNode(this.element)) {
+      this.element.parentNode.removeChild(this.element)
+    }
+  }
+  render(reactElement){
+    ReactDOM.render(reactElement, this.element)
+  }
 }
 
-const mapStateToProps = state => ({
-  showAlert: state.showAlert
-})
+function ghostify(props){
+  let container = new Container()
+  container.render(<App msg={props.msg} destroy={container.destroy.bind(container)} />)
+}
 
-const mapDispatchToProps = dispatch => ({
-  showAlertActions: bindActionCreators(showAlertActions, dispatch)
-})
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App)
+
+
+export const Alert = Alert
+export const alert = ghostify
+
+
