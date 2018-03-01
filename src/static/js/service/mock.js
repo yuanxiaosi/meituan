@@ -31,7 +31,7 @@ XMLHttpRequest = function(){
 
   setTimeout(function(){
     me.onreadystatechange()
-  }, 1000)
+  }, 200)
   
 }
 

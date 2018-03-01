@@ -5,47 +5,22 @@ import '../../../css/normalize/normalize.css';
 import '../../../css/animate/animate.css';
 import 'lib-flexible';
 
+import Animation from './components/react-animation/animation.jsx'
 
-class Application extends React.Component{ //router-transtion & animate
+class Application extends React.Component{
   constructor(props){
     super(props)
     this.state = {
-      calss: "animated fadeIn",
-      children: this.props.children,
-      oldChildren: null,
-      loading: false,
-      timer: null,
     }
   }
-  componentWillReceiveProps(){
-    let self = this;
-    this.state.oldChildren = this.props.children;
-    this.state.loading = true;
-    self.state.timer = setTimeout(()=>{
-      console.log(self)
-      self.setState({loading: false})
-    }, 300)
-  }
+
   render() {
+    let props = this.props;
     let { location, children } = this.props;
-    let fadeDiv
-    if(this.state.loading){
-      fadeDiv = (
-        <div className="animated fadeOut">
-          {this.state.oldChildren}
-        </div>
-      )
-    }else{
-      fadeDiv = (
-        <div className="animated fadeIn">
-          {children}
-        </div>
-      )
-    }
 
     return (
       <div className="app-main">
-        {fadeDiv}
+        <Animation {...props} />
       </div>
     );
   }

@@ -6,8 +6,8 @@ import ReactDOM from 'react-dom'
 
 import MyRouter from './router.jsx'
 import alertLess from './view/alert/main.less'
-/*import {alert} from './view/alert/main.jsx'
-window.alert = alert*/
+import {alert} from './view/alert/main.jsx'
+window.alert = alert
 
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk';

@@ -21,7 +21,7 @@ module.exports = function (option) {
         },
         module: {
             loaders: [{
-                test: /\.jsx?$/,
+                test: /\.(jsx|js)?$/,
                 exclude: /node_modules/,
                 loader: 'babel', // 'babel-loader' is also a legal name to reference
                 query: {

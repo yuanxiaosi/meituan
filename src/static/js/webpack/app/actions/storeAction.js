@@ -5,7 +5,6 @@ export const getStore = text => ({ type: types.GET_STORE, text })
 export const fetchStore = (params)=>{
   return function (dispatch){
     return appService.getStoreList(params).then((res) => {
-      console.log(res)
       if(res.status == 0){
         dispatch({
           type: types.FETCH_STORE_COMPLETE,
