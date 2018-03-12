@@ -14,8 +14,10 @@ gulp.task('webpack-dev', function () {
 
 gulp.task('webpack', function () {
 	return gulp.src('../package.json') // whatever sources
-		.pipe(webpack(require('./webpack.config.js')({
+		.pipe(webpack(_.defaultsDeep({
+			watch: false
+		}, require('./webpack.config.js')({
 			ENV: "prod"
-		})))
+		}))))
 		.pipe(gulp.dest('./src/build/static'));
 });

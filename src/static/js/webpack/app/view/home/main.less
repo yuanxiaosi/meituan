@@ -3,10 +3,56 @@
 	padding-bottom: 50px;
 	.banner{
 		width: 100%;
+		position: relative;
 		img{
 			width: 100%;
 			display: block;
 		}
+		.banner_box{
+			position: absolute;
+			left: 0;
+			top: 0;
+			width: 100vw;
+			.site{
+				color: #fff;
+				background: rgba(0,0,0,0.3);
+				width: 40%;
+				height: 28px;
+				line-height: 28px;
+				text-align: center;
+				border-radius: 13px;
+				margin:10px 12px 0 10px;
+				padding: 0 5px;
+				display: inline-block;
+				img{
+					width: 0.28125rem;
+					display: inline-block;
+					vertical-align: middle;
+					margin-top: -2px;
+					margin-right: 5px;
+				}
+				span {
+					margin-left: 5px;
+				}
+			}
+			.search{
+				width: 45%;
+				height: 28px;
+				line-height: 28px;
+				background: #FFF;
+				border-radius: 13px;
+				display: inline-block;
+				img{
+					width: 16px;
+					display: inline-block;
+					vertical-align: middle;
+					margin-top: -3px;
+					margin-left: 10px;
+					margin-right: 5px;
+				}
+			}
+		}
+		
 	}
 	.nav{
 		padding-bottom: 30px;
@@ -131,5 +177,31 @@
 				}
 			}
 		}
+		.load_box{
+			width: 100%;
+			background: #F4F4F4;
+			padding: 5px 0;
+		}
+		.loading:before {
+	    content: "";
+	    display: inline-block;
+	    position: relative;
+	    left: -11px;
+	    padding: 0;
+	    border: 0;
+	    background: 0;
+	    width: 2px;
+	    height: 2px;
+	    border-radius: 100%;
+	    box-shadow: 0 -7px 0 0.9px #666, 7px 0 #999, 0 7px #999, -7px 0 #999, -5px -5px 0 0.4px #999, 5px -5px 0 1.1px #666, 5px 5px #999, -5px 5px #999;
+	    transform: rotate(360deg);
+	    animation: spin 1.5s linear infinite;
+	    -webkit-transform: rotate(360deg);
+	    -webkit-animation: spin 1.5s linear infinite;
+	    top: -4px;
+	  }
 	}
 }
+
+@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
+@-webkit-keyframes spin{from{-webkit-transform:rotate(0deg)}to{-webkit-transform:rotate(360deg)}}

@@ -113,11 +113,19 @@ class App extends React.Component{
 
 		return (
 		  <div className="home">
-		  	<Navigation current={1}/>
 				<div className="banner">
 					<img src={require('../../../../../img/app/banner.jpg')} />
-					<div className="site"></div>
-					<div className="search"></div>
+					<div className='banner_box'>
+						<div className="site">
+							<img src={require('../../../../../img/app/site.png')} />
+							深圳市－广东省
+							<span>></span>
+						</div>
+						<div className="search">
+							<img src={require('../../../../../img/app/search.png')} />
+							鸡排
+						</div>
+					</div>
 				</div>
 				<div className="nav">
 					<ul className="">
@@ -162,8 +170,14 @@ class App extends React.Component{
 					<ul>
 						{storeDiv}
 					</ul>
+					<div className={self.state.isLoading?'load_box loading':'hide'}>
+						正在努力加载中…
+					</div>
+					<div className={self.state.isOver?'load_box loadOver':'hide'}>
+						已经没有数据了…
+					</div>
 				</div>
-
+				<Navigation current={1} />
 			</div>
 		);
   }

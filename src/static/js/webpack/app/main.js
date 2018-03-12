@@ -18,9 +18,7 @@ const store = createStore(reducer, applyMiddleware(thunk))
 
 ReactDOM.render(
   <Provider store={store}>
-    <div>
       {MyRouter}
-    </div>
   </Provider>,
   document.getElementById('main')
 )

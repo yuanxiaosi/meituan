@@ -11,21 +11,29 @@ class App extends React.Component{
       containerDestroy: this.props.destroy||function(){}
     };
   }
+
   componentWillMount() {
     
   }
   componentDidMount() {
 
   }
+  shouldComponentUpdate(nextProps) {
+    return (nextProps.ids !== this.props.ids || nextProps.data !== this.props.data);
+  }
+  
   close() {
-    this.props.destroy()
+    let self = this;
+    self.setState({status: false},self.state.containerDestroy())
+    
   }
   render() {
     let self = this;
     let status = this.state.status
     let msg = this.state.msg
+
     return (
-      <div className="alert">
+      <div className={status?'alert':'alert hide'}>
         <div className="mask"></div>
         <div className="body">
           <div className="msg">{msg}</div>
@@ -59,7 +67,7 @@ function ghostify(props){
 
 
 
-export const Alert = Alert
+export const Alert = App
 export const alert = ghostify
 
 
