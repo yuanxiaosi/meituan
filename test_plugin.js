@@ -3,11 +3,11 @@ var t = require('babel-types');
 
 var visitor = {
   CallExpression(path) {
-    if(!t.isIdentifier(path.node.callee, {name:"test"})){return}
+    if(!t.isIdentifier(path.node.callee, {name:"aaa"})){return}
 
     //path.node.callee.name
     //path.node.arguments
-    path.node.arguments[0].value = `"aaa"`
+    path.node.arguments[0].value = `"val"`
 
     path.replaceWith(
       t.callExpression(

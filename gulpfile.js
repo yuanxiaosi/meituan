@@ -15,4 +15,9 @@ gulp.task('build', () => {
 	return sequence('clean', 'copy-img', 'webpack', 'minify');
 });
 
-gulp.task('deve', shell.task(['node index']))
+
+gulp.task('test', () => {
+  return sequence('minify');
+});
+
+gulp.task('deve', shell.task(['node-dev index']))

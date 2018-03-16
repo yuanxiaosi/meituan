@@ -4,12 +4,14 @@ var APP_PATH = path.resolve(__dirname, '../src/static/js');
 var readline = require('readline');
 var HtmlPlugin = require('./htmlPlugin.js');
 
+
 module.exports = function (option) {
     var ENV = option.ENV;
     var filename = ENV == 'dev' ? 'entry/[name].js' : 'entry/[name]-[chunkhash].js';
     var chunkFilename = ENV == 'dev' ? 'chunk/[name].js' : 'chunk/[name]-[chunkhash].js';
 
     return {
+        devtool: 'false',
         context: APP_PATH,
         entry: {
             app: './webpack/app/main.js'
@@ -47,9 +49,14 @@ module.exports = function (option) {
                 process.stderr.cursorTo(0);*/
                 process.stderr.write(percent + '% ' + message);
             }),
+            // new webpack.optimize.UglifyJsPlugin({
+            //     compress: {
+            //         warnings: false
+            //     }
+            // }),
             new HtmlPlugin({
                 app: "app"
-            })
+            }),
         ]
     };
 }
