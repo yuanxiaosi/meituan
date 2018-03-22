@@ -18,9 +18,9 @@ class App extends React.Component{
   componentDidMount() {
 
   }
-  shouldComponentUpdate(nextProps) {
-    return (nextProps.ids !== this.props.ids || nextProps.data !== this.props.data);
-  }
+  // shouldComponentUpdate(nextProps) {
+  //   return (nextProps.ids !== this.props.ids || nextProps.data !== this.props.data);
+  // }
   
   close() {
     let self = this;
