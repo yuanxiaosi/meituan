@@ -2,6 +2,12 @@ var webpack = require('webpack');
 var path = require('path');
 var APP_PATH = path.resolve(__dirname, '../src/static/js');
 var readline = require('readline');
+
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var extractCSS = new ExtractTextPlugin('stylesheets/[name]-one.css');
+var extractLESS = new ExtractTextPlugin('stylesheets/[name]-two.css');
+
+
 var HtmlPlugin = require('./htmlPlugin.js');
 
 
@@ -31,10 +37,10 @@ module.exports = function (option) {
                 }
             }, {
                 test: /\.css$/,
-                loader: "style!css"
+                loader: extractCSS.extract("style-loader", "css-loader")
             }, {
                 test: /\.less$/,
-                loader: "style!css!less?relativeUrls"
+                loader: extractLESS.extract("style-loader", "css-loader", "less-loader")
             }, {
                 test: /\.(png|jpg|jpeg|gif|woff|woff2|eot|ttf|svg|webp)$/,
                 loader: "file?name=asset/[hash].[ext]"
@@ -57,6 +63,8 @@ module.exports = function (option) {
             new HtmlPlugin({
                 app: "app"
             }),
+            extractCSS,
+            extractLESS,
         ]
     };
 }

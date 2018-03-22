@@ -24,6 +24,7 @@ class App extends React.Component{
   
   close() {
     let self = this;
+    console.log(this)
     self.setState({status: false},self.state.containerDestroy())
     
   }
@@ -31,7 +32,6 @@ class App extends React.Component{
     let self = this;
     let status = this.state.status
     let msg = this.state.msg
-
     return (
       <div className={status?'alert':'alert hide'}>
         <div className="mask"></div>
