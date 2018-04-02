@@ -1,6 +1,6 @@
 var _ = require('lodash');
 var gulp = require('gulp');
-var webpack = require('gulp-webpack');
+var webpack = require('webpack-stream');
 
 gulp.task('webpack-dev', function () {
 	return gulp.src('../package.json') // whatever sources

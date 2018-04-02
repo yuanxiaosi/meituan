@@ -55,6 +55,7 @@
     "redux-thunk": "^2.2.0",
     "run-sequence": "^2.2.1",
     "style-loader": "^0.20.2",
-    "vinyl-paths": "^2.1.0"
+    "vinyl-paths": "^2.1.0",
+    "webpack-stream": "^4.0.3"
   }
 }
